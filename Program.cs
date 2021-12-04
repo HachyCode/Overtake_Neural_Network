@@ -8,7 +8,7 @@ namespace Overtake_Neural_Network
     class Program
     {
         private static bool end = false;
-        static void Main(string[] args)
+        static void Main()
         {
             Task timer = new Task(() => Timer()); //New task thread for timer.
             timer.Start();
