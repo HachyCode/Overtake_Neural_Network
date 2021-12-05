@@ -20,7 +20,7 @@ namespace Overtake_Neural_Network
         }
         public static void Timer()
         {
-            Console.WriteLine("Timer started");
+            View.PrintTime("Timer started");
 
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
@@ -30,7 +30,7 @@ namespace Overtake_Neural_Network
             }
             stopWatch.Stop();
 
-            Console.WriteLine($"RunTime: {stopWatch.Elapsed}");
+            View.PrintTime($"RunTime: {stopWatch.Elapsed}");
         }
     }
 }

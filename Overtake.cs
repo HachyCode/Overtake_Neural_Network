@@ -32,9 +32,10 @@ namespace Overtake_Neural_Network
                 .Select(x => x.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)).ToArray();
 
             dataCountAmount = Convert.ToInt32(allInputs.Length * fileSize);
-            Console.WriteLine($"Total Data: {allInputs.Length}");
-            Console.WriteLine($"Data used for training: {dataCountAmount}");
-            Console.WriteLine($"Epochs: {epochs}");
+
+            View.PrintText($"Total Data: {allInputs.Length}");
+            View.PrintText($"Data used for training: {dataCountAmount}");
+            View.PrintText($"Epochs: {epochs}");
 
             mixedata = Model.Mix(allInputs);
 
@@ -45,8 +46,7 @@ namespace Overtake_Neural_Network
         {
             for (var epoch = 0; epoch < epochs; epoch++)
             {
-                Console.SetCursorPosition(1, 4);
-                Console.WriteLine($"epoch: {epoch}");
+                View.PrintTextPlacement($"epoch: {epoch}", 1, 4);
                 foreach (var input in trainingData)
                 {
                     var inputList = input.Take(inputNodes).Select(double.Parse).ToArray();
@@ -61,7 +61,7 @@ namespace Overtake_Neural_Network
         {
             var testDataset = mixedata.Skip(dataCountAmount).ToArray();
 
-            Console.WriteLine(testDataset.Length);
+            View.PrintText($"{testDataset.Length}");
 
             var scoreCard = new List<bool>();
 
@@ -75,11 +75,10 @@ namespace Overtake_Neural_Network
                 scoreCard.Add(predictedResult == correctResult);
 
                 var miss = (predictedResult == correctResult) ? "" : "miss";
-                Console.WriteLine($"{input[0],4}, {input[1],4}, {input[2],4}, {correctResult,-10}, {predictedResult,-10} {miss}");
-            }
 
-            Console.WriteLine(
-                $"Performance is {(scoreCard.Count(x => x) / Convert.ToDouble(scoreCard.Count)) * 100} percent out of {testDataset.Length}");
+                View.PrintText($"{input[0],4}, {input[1],4}, {input[2],4}, {correctResult,-10}, {predictedResult,-10} {miss}");
+            }
+            View.PrintText($"Performance is {(scoreCard.Count(x => x) / Convert.ToDouble(scoreCard.Count)) * 100} percent out of {testDataset.Length}");
         }
 
         private static double[] NormaliseData(double[] input)
