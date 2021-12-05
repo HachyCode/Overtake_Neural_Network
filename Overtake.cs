@@ -5,26 +5,12 @@ using System.IO;
 
 namespace Overtake_Neural_Network
 {
-    class Overtake
+    class Overtake : Settings
     {
+
         private static readonly List<string> PossibleResults = new List<string> { "True", "False" };
 
-        private static readonly string filePath = (@"C:\Users\Viktorija Pheonix\Documents\Programing\Level_6\Assignement SEM1 AI\OvertakeData_1000.csv");
-        private static readonly int epochs = 500;
-
-        private static readonly int inputNodes = 3;
-        private static readonly int hiddenNodes = 5;
-        private static readonly int outputNodes = 2;
-
-        private static readonly double learningRate = 0.1;
-        private static readonly double fileSize = 0.50;
-        private static string[][] trainingData { get; set; }
-
         private static readonly AI_NeuralNetwork network = new AI_NeuralNetwork(inputNodes, hiddenNodes, outputNodes, learningRate);
-
-        private static string[][] mixedata { get; set; }
-        private static int dataCountAmount { get; set; }
-        private static string[][] dataForTraining { get; set; }
 
         public static void Run()
         {
