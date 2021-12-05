@@ -8,5 +8,6 @@ namespace Overtake_Neural_Network
 {
     class View
     {
+        public View() { }
     }
 }
